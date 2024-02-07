@@ -1,5 +1,5 @@
 #root {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
@@ -40,3 +40,54 @@
 .read-the-docs {
     color: #888;
 }
+
+
+
+
+.main-page__main-block{
+    display: flex;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.container {
+    display: flex;
+    width: 1440px;
+    margin: 0 auto;
+}
+.ant-layout-sider {
+    width:600px;
+    
+}
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header{
+    text-align: left;
+    padding: 20px 20px 25px ;
+}
+
+.header-content{
+    display: flex;
+    align-items: flex-start;
+}
+.header-content Button {
+    height: 40px; /* Явный размер кнопки */
+    margin-top: 0; /* Убрать верхний отступ */
+}
+ 
+ 
+
+/* header, footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+} */
+
+
