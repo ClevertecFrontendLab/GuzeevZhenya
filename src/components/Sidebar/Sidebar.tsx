@@ -1,26 +1,3 @@
-// import { Button, Layout, Menu } from 'antd';
-// import Sider from 'antd/lib/layout/Sider';
-// import Title from 'antd/lib/typography/Title';
-
-// import React from 'react';
-
-// export const Sidebar = () => {
-//     const { Header, Footer, Sider, Content } = Layout;
-//     return (
-//         <Sider className='sidebar'>
-//             <div>
-//                 <Title level={1}>Clever</Title>
-//             </div>
-//             <Menu theme='dark' mode='inline'>
-//                 <Menu.Item key='1'>Календарь</Menu.Item>
-//                 <Menu.Item key='2'>Тренировки</Menu.Item>
-//                 <Menu.Item key='3'>Достижения</Menu.Item>
-//                 <Menu.Item key='4'>Профиль</Menu.Item>
-//             </Menu>
-//         </Sider>
-//     );
-// };
-
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -28,7 +5,7 @@ import {
     UserOutlined,
     VideoCameraOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Typography } from 'antd';
 import React, { useState } from 'react';
 
 export const Sidebar: React.FC = () => {
@@ -60,6 +37,9 @@ export const Sidebar: React.FC = () => {
     return (
         <Layout>
             <Sider trigger={null} collapsible collapsed={collapsed}>
+                <Typography.Title level={2} style={{ margin: 0 }}>
+                    Clever<span>fit</span>
+                </Typography.Title>
                 <Menu
                     theme='dark'
                     mode='inline'

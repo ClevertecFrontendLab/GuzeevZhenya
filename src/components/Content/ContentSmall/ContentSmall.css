@@ -1,0 +1,63 @@
+import 'antd/dist/antd.css';
+
+
+.content__main-block--small{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width:770px;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(17, 16, 17);
+    font-weight: 400;
+   
+}
+
+.content__main-block{
+    display: flex   ;
+}
+
+/* .content__main-block--small div{
+    width: 100%;
+    background-color: #fff;  
+   
+} */
+
+/* .content__main-block--small div:nth-child(2){
+    margin: 0 15px;
+}
+.block--small__box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+.block--small__box div{
+    border-bottom: 1px solid rgb(214, 212, 212); 
+    padding-bottom: 8px; 
+}
+
+.block--small__box a{
+    padding-top: 8px; 
+}
+ */
+
+
+
+
+
+
+
+
+/* 
+.ant-spin-container{
+      display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width:770px;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(17, 16, 17);
+    font-weight: 400;
+} */

@@ -1,0 +1,7 @@
+.content__main-block--big{
+    max-width:770px;
+    font-size: 20px;
+    color: rgb(106, 85, 180);
+    background-color: #fff;
+    padding: 20px;
+}
