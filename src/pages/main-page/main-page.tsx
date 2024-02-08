@@ -1,34 +1,54 @@
 import React, { useState } from 'react';
 
-import reactLogo from '/react.svg';
-import viteLogo from '/vite.svg';
-import tsLogo from '/ts.svg';
 import './main-page.css';
+import { Button, Layout, Menu } from 'antd';
+import Title from 'antd/lib/typography/Title';
+import { Sidebar } from '@components/Sidebar/Sidebar';
+import { SidebarTst } from '@components/Sidebar/SidebarTst';
+import { HeaderMain } from '@components/Header/Header';
+import { ContentMain } from '@components/Content/Content';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 export const MainPage: React.FC = () => {
-    const [count, setCount] = useState(0);
+    const { Header, Footer, Sider, Content } = Layout;
+
+    const [collapsed, setCollapsed] = useState(false);
 
     return (
-        <>
-            <div>
-                <a href='https://vitejs.dev' target='_blank'>
-                    <img src={viteLogo} className='logo' alt='Vite logo' />
-                </a>
-                <a href='https://react.dev' target='_blank'>
-                    <img src={reactLogo} className='logo react' alt='React logo' />
-                </a>
-                <a href='https://www.typescriptlang.org/' target='_blank'>
-                    <img src={tsLogo} className='logo' alt='TS logo' />
-                </a>
-            </div>
-            <h1>Vite + React + TS</h1>
-            <div className='card'>
-                <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-                <p>
-                    Edit <code>src/pages/main-page.tsx</code> and save to test HMR
-                </p>
-            </div>
-            <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
-        </>
+        <Layout className='container'>
+            <Sider breakpoint="md" collapsedWidth="0" theme='dark' trigger={null} collapsible collapsed={collapsed} className='sider'>
+                <SidebarTst />
+
+                <Button
+                    type='text'
+                    onClick={() => setCollapsed(!collapsed)}
+                    className='triger-btn'
+                    icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                />
+            </Sider>
+
+            <Layout>
+                <HeaderMain />
+                <ContentMain />
+
+                {/* <Header className='header'>
+                    <Button>кнопка</Button>
+                    <Layout className='header-content'>
+                        <Title level={1}>
+                            Приветствуем тебя в CleverFit — приложении,которое поможет тебе добиться
+                            своей мечты!
+                        </Title>
+                        <Button>кнопка</Button>
+                    </Layout>
+                </Header>
+                <Content>
+                    <h2>Main Content</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </Content>
+                <Footer>
+                    <p>Footer</p>
+                </Footer> */}
+            </Layout>
+        </Layout>
     );
 };
