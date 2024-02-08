@@ -41,7 +41,7 @@ export const Sidebar: React.FC = () => {
                     Clever<span>fit</span>
                 </Typography.Title>
                 <Menu
-                    theme='dark'
+                    theme='light'
                     mode='inline'
                     defaultSelectedKeys={['1']}
                     items={items.map((el) => ({

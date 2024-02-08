@@ -88,6 +88,7 @@ body {
 }
 
 .sider  {
+    position: relative;
     height: 100vh !important;
     position: sticky !important;
     left: 0;
@@ -98,15 +99,8 @@ body {
   
 }
 
-@media screen and (max-width: 768px) {
-    .sider {
-        width: 100%;
-        max-width: 500px; /* Максимальная ширина при адаптиве */
-    }
-}
-
-.triger-btn{
-    font-size: 16px;
+.trigger{
+    font-size: 30px;
     width: 50px;
     height: 50px;
     position: fixed;
@@ -114,7 +108,16 @@ body {
     left: 10px;
 }
 
-a{
+
+@media screen and (max-width: 768px) {
+    .sider {
+        width: 100%;
+        max-width: 500px; /* Максимальная ширина при адаптиве */
+    }
+}
+
+
+/* a{
     list-style: none;
     text-decoration: none;
-}
+} */
