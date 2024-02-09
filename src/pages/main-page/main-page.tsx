@@ -8,6 +8,7 @@ import { HeaderMain } from '@components/Header/Header';
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { ContentMain } from '@components/Content/Content';
+import MyFooter from '@components/Footer/Footer';
 
 export const MainPage: React.FC = () => {
     const { Header, Footer, Sider, Content } = Layout;
@@ -22,7 +23,7 @@ export const MainPage: React.FC = () => {
                     style={{
                         color: 'red',
                         position: 'absolute',
-                        top: '50%',                            
+                        top: '50%',
                     }}
                     className='trigger'
                     type='text'
@@ -35,6 +36,7 @@ export const MainPage: React.FC = () => {
                     <HeaderMain />
                 </Header>
                 <ContentMain />
+                <MyFooter />
             </Layout>
         </Layout>
     );
