@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+/* import 'antd/dist/antd.css';
 
 
 .content__main-block--small{
@@ -15,7 +15,7 @@ import 'antd/dist/antd.css';
 
 .content__main-block{
     display: flex   ;
-}
+} */
 
 /* .content__main-block--small div{
     width: 100%;
@@ -61,3 +61,7 @@ import 'antd/dist/antd.css';
     color: rgb(17, 16, 17);
     font-weight: 400;
 } */
+
+.site-card-wrapper{
+    text-align: center;
+}

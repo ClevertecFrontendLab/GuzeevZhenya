@@ -1,7 +1,13 @@
 .content__main-block--big{
-    max-width:770px;
-    font-size: 20px;
-    color: rgb(106, 85, 180);
-    background-color: #fff;
+    max-width: 800px;
+    font-size: 16px;
+    color: rgb(106, 85, 180) !important;
+    background-color: #fff !important;
     padding: 20px;
+  
+}
+
+.content__main-block--big article div,h3{
+    margin: 0;
+    color: rgb(106, 85, 180) !important;
 }

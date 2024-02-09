@@ -7,6 +7,7 @@ import { SidebarTst } from '@components/Sidebar/SidebarTst';
 import { HeaderMain } from '@components/Header/Header';
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { ContentMain } from '@components/Content/Content';
 
 export const MainPage: React.FC = () => {
     const { Header, Footer, Sider, Content } = Layout;
@@ -15,22 +16,13 @@ export const MainPage: React.FC = () => {
 
     return (
         <Layout className='container'>
-            <Sider
-                breakpoint='md'
-                collapsedWidth='0'
-                trigger={null}
-                collapsible
-                collapsed={collapsed}
-                className='sider'
-            >
+            <Sider style={{ minHeight: '100vh', backgroundColor: '#fff' }}>
                 <SidebarTst />
-
                 <Button
                     style={{
                         color: 'red',
                         position: 'absolute',
-                        top: '50%',
-                        left: 0,
+                        top: '50%',                            
                     }}
                     className='trigger'
                     type='text'
@@ -42,7 +34,7 @@ export const MainPage: React.FC = () => {
                 <Header className='header'>
                     <HeaderMain />
                 </Header>
-                {/* <ContentMain /> */}
+                <ContentMain />
             </Layout>
         </Layout>
     );

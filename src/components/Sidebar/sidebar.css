@@ -1,43 +1,31 @@
-/* @import '~antd/dist/antd.css'; */
+/*  
 
-/* .trigger {
-    padding: 0 24px;
-    font-size: 18px;
-    line-height: 64px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-
-.trigger:hover {
-    color: #1890ff;
-}
-  
-.logo {
-    height: 32px;
-    margin: 16px;
-    background: rgba(255, 255, 255, 0.3);
-}
-  
-.site-layout .site-layout-background {
-    background: #fff;
-} */
-
-
-
-/* Sider */
-
-
-.logo{
-    color: #1890ff;
-    margin: 30px 0;
-    font-size: 1.5rem;
-}
-.sidebar{ 
+ 
+.sidebar__logo-block{ 
+    position: relative;
     display: flex;
     align-items: center; 
     justify-content: center ;
     margin-bottom: 40px;
+    width: 200px !important;
+}
+
+.sider  {
+    height: 100vh !important;
+    position: sticky !important;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    
+    background-color: #fff;
+    min-width: 250px !important;
+  
+}
+@media screen and (max-width: 768px) {
+    .sider {
+        width: 100%;
+        max-width: 500px;  
+    }
 }
 
 .menu-bar{
@@ -52,7 +40,7 @@
     color: #fff !important;
 }
 .ant-menu-item{
-    /* width: 100%; */
+   
     width: 10%;
     font-size: 20px;
     margin-bottom: 25px !important;
@@ -62,4 +50,38 @@
 }
 .ant-menu-title-content{
     padding-left: 10px;
+}
+
+.logout-button {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+
+/* .sider{
+    height: 100vh;
+    position: sticky !important;
+    left: 0;
+    bottom: 0;
+    top: 0;
+} */
+
+ 
+.trigger{
+    font-size: 16px;
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    bottom: 10px;
+    right: -30px;
+    color: red !important;
+    background-color: red !important;
+}
+.logo{
+    color: #1890ff;
+    margin: 30px 0;
+    font-size: 1.5rem;
+    text-align: center;
 }

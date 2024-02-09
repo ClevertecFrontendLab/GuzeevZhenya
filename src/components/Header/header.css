@@ -1,9 +1,21 @@
-/* .header{
+.header{
     text-align: left;
-    padding: 20px 20px 25px ;
-    background-color: rgb(239, 245, 245);
+    padding-top:   20px  ;
+    background-color: rgb(239, 245, 245) !important;
+    height: auto !important;
+
+}
+ 
+ 
+  
+.header-content {
+    display: flex;
+    justify-content: space-between;
+ 
+   
 }
 
+ 
 .header-button__options{
     margin-top: 0; 
     width: 100px;
@@ -15,15 +27,12 @@
     cursor: pointer;  
 }
  
-.header-content{
-    display: flex;
-    justify-content: space-between;
-}
+
  
 .header-button__options svg{
     left: 20px;
 }
 
-  */
+ 
 
  
