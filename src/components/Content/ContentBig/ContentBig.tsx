@@ -1,10 +1,10 @@
 import React from 'react';
 import { Layout, Typography } from 'antd';
-import './CleverFitFeatures.css';
+import './ContentBig.css';
 
 const { Title, Paragraph } = Typography;
 
-const CleverFitFeatures = () => {
+export const ContentBig = () => {
     return (
         <Layout className='content__main-block--big'>
             <Typography>
@@ -29,4 +29,4 @@ const CleverFitFeatures = () => {
     );
 };
 
-export default CleverFitFeatures;
+ 
