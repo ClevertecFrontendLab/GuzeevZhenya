@@ -1,2 +1,8 @@
+.footer-card__phones {
+    min-width: 240px;
 
+}
 
+.footer-card__phones .ant-card-body {
+    padding: 12px, 24px, 12px, 24px !important;
+}

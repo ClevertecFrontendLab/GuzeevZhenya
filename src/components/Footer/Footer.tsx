@@ -1,6 +1,7 @@
-import { AimOutlined } from '@ant-design/icons';
+import { AimOutlined, AndroidFilled, AppleFilled, UserOutlined } from '@ant-design/icons';
 import { Card, Col, Divider, Layout, Row, Space, Typography } from 'antd';
 import Title from 'antd/lib/typography/Title';
+import './footer.css'
 
 const { Footer } = Layout;
 
@@ -10,24 +11,33 @@ export const MyFooter = () => {
         <Footer style={{ bottom: '40px', width: '100%' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'flex-end' }}>
-                    <a href='#'>Ссылка 1</a>
+                    <a href='#'>Смотреть отзывы </a>
                 </div>
-                <Card>
-                    <Title level={4}>Заголовок</Title>
-                    <a href='#'>Ссылка</a>
-                    <Text>Текст под заголовком и ссылкой</Text>
+                <Card className='footer-card__phones'>
+                    <Typography.Link href="#">
+                        Скачать на телефон
+                    </Typography.Link>
+                    <Typography.Text style={{ display: "block" }}>
+                        Доступно в PRO-тарифе
+                    </Typography.Text>
                     <Divider />
-                    <Row>
+                    <Row style={{ display: "flex", justifyContent: "space-between" }} >
                         <Col span={12}>
-                            <Text>Текст слева</Text>
+                            <Space>
+                                <AndroidFilled />
+                                <Text>Android OS</Text>
+                            </Space>
                         </Col>
                         <Col span={12}>
-                            <Text style={{ textAlign: 'right' }}>Текст справа</Text>
+                            <Space>
+                                <AppleFilled />
+                                <Text>Apple iOS</Text>
+                            </Space>
                         </Col>
                     </Row>
                 </Card>
             </div>
-        </Footer>
+        </Footer >
     );
 };
 

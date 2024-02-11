@@ -7,7 +7,7 @@ import { SettingFilled } from '@ant-design/icons';
 export const HeaderMain = () => {
     return (
         <>
-            <Button type='primary'>Главная</Button>
+            <Button style={{ backgroundColor: 'inherit', color: "#262626", outline: "none", border: "none" }} type='link' >Главная</Button>
 
             <Layout className='header'>
                 <div className='header-content'>
@@ -19,11 +19,11 @@ export const HeaderMain = () => {
                         Приветствуем тебя в CleverFit — приложении, которое поможет тебе добиться
                         своей мечты!
                     </Typography.Title>
-                    <Button icon={<SettingFilled />} type='primary'>
+                    <Button type='link' style={{ backgroundColor: 'inherit', color: "#262626", outline: "none", border: "none" }} icon={<SettingFilled />} >
                         Настройки
                     </Button>
                 </div>
-            </Layout>
+            </Layout >
         </>
     );
 };
