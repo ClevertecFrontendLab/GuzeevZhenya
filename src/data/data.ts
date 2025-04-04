@@ -14,6 +14,8 @@ export const recipesItems = [
         description: 'Вкусная паста с домашним томатным соусом.',
         category: 'Основное блюдо',
         isFavorite: false,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 2,
@@ -22,6 +24,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 3,
@@ -30,6 +34,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 4,
@@ -38,6 +44,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 5,
@@ -46,6 +54,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 6,
@@ -54,6 +64,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 7,
@@ -62,6 +74,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
     {
         id: 8,
@@ -70,6 +84,8 @@ export const recipesItems = [
         description: 'Нежный шоколадный торт с кремом.',
         category: 'Десерт',
         isFavorite: true,
+        likes: 124, // Добавлено
+        addedToFavorites: 56, // Добавлено
     },
 ];
 

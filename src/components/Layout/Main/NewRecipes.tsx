@@ -1,25 +1,48 @@
-// NewRecipes.tsx
+// src/components/NewRecipes.tsx
 import { Box, Flex, Heading, IconButton } from '@chakra-ui/react';
 import { useRef } from 'react';
 
-import { newRecipesBreakpoints } from '~/components/constant/breakpoints';
-import { useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
+import { BreakpointsConfig, useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
 import { recipesItems } from '~/data/data';
-import { MaxWidthProps } from '~/types/types';
 
 import { RecipeCard } from './RecipeCard';
 
-export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
+const newRecipesBreakpoints: BreakpointsConfig = {
+    small: {
+        cardWidth: 160,
+        imageHeight: 120,
+        visibleCards: 2,
+        gap: 16,
+    },
+    medium: {
+        cardWidth: 240,
+        imageHeight: 160,
+        visibleCards: 3,
+        gap: 20,
+    },
+    large: {
+        cardWidth: 280,
+        imageHeight: 180,
+        visibleCards: 4,
+        gap: 24,
+    },
+    xlarge: {
+        cardWidth: 320,
+        imageHeight: 200,
+        visibleCards: 4,
+        gap: 24,
+    },
+};
+
+export const NewRecipes = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const currentBreakpoint = useCustomBreakpoints(newRecipesBreakpoints);
 
     const {
-        cardWidth = 322,
-        cardHeight = 414,
-        imageWidth = 322,
-        imageHeight = 230,
-        visibleCards = 4,
+        cardWidth = 280,
+        imageHeight = 180,
         gap = 24,
+        visibleCards = 4,
     } = currentBreakpoint || {};
 
     const scrollTo = (direction: 'left' | 'right') => {
@@ -30,13 +53,9 @@ export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
         const maxScroll = container.scrollWidth - container.clientWidth;
 
         if (direction === 'right') {
-            // Для последнего скролла учитываем только оставшееся расстояние без gap
             const remainingScroll = maxScroll - container.scrollLeft;
             if (remainingScroll <= scrollAmount) {
-                container.scrollTo({
-                    left: maxScroll,
-                    behavior: 'smooth',
-                });
+                container.scrollTo({ left: maxScroll, behavior: 'smooth' });
                 return;
             }
         }
@@ -51,16 +70,8 @@ export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
     };
 
     return (
-        <Box
-            mb={10}
-            position='relative'
-            maxW={maxW}
-            mx='auto'
-            pt={6}
-            pb={5}
-            px={{ base: 4, xl: 0, md: 0 }}
-        >
-            <Heading size='md' mb={4}>
+        <Box mb={10} maxW='1360px' mx='auto' pt={6} pb={5} px={{ base: 4, md: 0 }}>
+            <Heading size='md' mb={6}>
                 Новые рецепты
             </Heading>
 
@@ -68,14 +79,15 @@ export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
                 <IconButton
                     aria-label='Прокрутить влево'
                     position='absolute'
-                    left='0'
-                    top={`calc(${cardHeight / 2}px - 24px)`}
+                    left={0}
+                    top='50%'
+                    transform='translateY(-50%)'
                     zIndex={1}
                     onClick={() => scrollTo('left')}
                     display={{ base: 'none', md: 'flex' }}
                     bg='white'
                     boxShadow='md'
-                    borderRadius='md'
+                    borderRadius='full'
                     width='48px'
                     height='48px'
                 />
@@ -83,31 +95,17 @@ export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
                 <Box
                     ref={scrollContainerRef}
                     overflowX='auto'
-                    position='relative'
-                    width='100%'
-                    mx='auto'
                     css={{
                         '&::-webkit-scrollbar': { display: 'none' },
-                        '-ms-overflow-style': 'none',
-                        'scrollbar-width': 'none',
+                        scrollbarWidth: 'none',
                     }}
                 >
-                    <Flex
-                        gap={`${gap}px`}
-                        width={`${(cardWidth + gap) * recipesItems.length - gap}px`} // Вычитаем последний gap
-                    >
+                    <Flex gap={`${gap}px`} px={{ base: 2, md: 0 }}>
                         {recipesItems.map((recipe) => (
-                            <Box
-                                key={recipe.id}
-                                width={`${cardWidth}px`}
-                                flexShrink={0}
-                                _last={{ mr: 0 }}
-                            >
+                            <Box key={recipe.id} flex={`0 0 ${cardWidth}px`} flexShrink={0}>
                                 <RecipeCard
                                     {...recipe}
-                                    cardWidth={`${cardWidth}px`}
-                                    cardHeight={`${cardHeight}px`}
-                                    imageWidth={`${imageWidth}px`}
+                                    imageWidth={`${cardWidth}px`}
                                     imageHeight={`${imageHeight}px`}
                                 />
                             </Box>
@@ -118,14 +116,15 @@ export const NewRecipes = ({ maxW = '1360px' }: MaxWidthProps) => {
                 <IconButton
                     aria-label='Прокрутить вправо'
                     position='absolute'
-                    right='0'
-                    top={`calc(${cardHeight / 2}px - 24px)`}
+                    right={0}
+                    top='50%'
+                    transform='translateY(-50%)'
                     zIndex={1}
                     onClick={() => scrollTo('right')}
                     display={{ base: 'none', md: 'flex' }}
                     bg='white'
                     boxShadow='md'
-                    borderRadius='md'
+                    borderRadius='full'
                     width='48px'
                     height='48px'
                 />

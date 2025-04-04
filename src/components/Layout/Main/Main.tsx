@@ -1,5 +1,5 @@
 // Main.tsx
-import { Box, Divider } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { JuicySection } from './JuicySection';
 import { NewRecipes } from './NewRecipes';
@@ -16,7 +16,6 @@ export const Main = () => (
     >
         <SearchSection />
         <NewRecipes />
-        <Divider my={6} />
         <JuicySection />
         <ReviewsSection />
     </Box>

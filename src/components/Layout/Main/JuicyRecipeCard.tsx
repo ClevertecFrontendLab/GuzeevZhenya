@@ -12,8 +12,11 @@ interface JuicyRecipeCardProps {
         name: string;
         text: string;
     };
-    cardWidth?: string;
-    cardHeight?: string;
+    cardWidth?: string | number;
+    imageHeight?:
+        | string
+        | number
+        | { base: string | number; md?: string | number; lg?: string | number };
 }
 
 export const JuicyRecipeCard = ({
@@ -21,50 +24,49 @@ export const JuicyRecipeCard = ({
     title,
     description,
     category,
-    likes,
-    addedToFavorites,
+    likes = 0,
+    addedToFavorites = 0,
     review,
-    cardWidth = '346px',
-    cardHeight = '244px',
+    cardWidth = '100%',
+    imageHeight = '244px',
 }: JuicyRecipeCardProps) => (
-    <Grid templateColumns='repeat(2, 1fr)' gap={0} mb={6}>
+    <Grid
+        templateColumns={{ base: '1fr', md: '346px 1fr' }}
+        gap={{ base: 0, md: 6 }}
+        width={cardWidth}
+        bg='white'
+        borderRadius='lg'
+        overflow='hidden'
+        boxShadow='md'
+    >
+        {/* Блок с изображением */}
         <GridItem position='relative'>
             <Image
                 src={image}
                 alt={title}
-                h={cardHeight}
-                w={cardWidth}
+                width='100%'
+                height={imageHeight}
                 objectFit='cover'
-                sx={{
-                    '@media (max-width: 767px)': {
-                        h: '128px',
-                        w: '158px',
-                    },
-                }}
+                display='block'
             />
 
             {review && (
                 <Box
                     position='absolute'
-                    bottom={{ base: '10px', md: '20px' }}
-                    left={{ base: '12px', md: '24px' }}
-                    maxW={{ base: '140px', md: '250px' }}
+                    bottom='20px'
+                    left='24px'
+                    maxW='250px'
                     bg='green.300'
-                    p={1}
+                    p={2}
                     borderRadius='md'
                 >
                     <Flex align='center'>
                         <Avatar src={review.avatar} name={review.name} size='xs' mr={2} />
                         <Box>
-                            <Text
-                                as='span'
-                                fontSize={{ base: '12px', md: '14px' }}
-                                color='#000'
-                                mr={2}
-                            >
+                            <Text as='span' fontSize='sm' fontWeight='medium' mr={2}>
                                 {review.name}:
                             </Text>
-                            <Text as='span' fontSize={{ base: '12px', md: '14px' }} color='#000'>
+                            <Text as='span' fontSize='sm'>
                                 {review.text}
                             </Text>
                         </Box>
@@ -73,43 +75,53 @@ export const JuicyRecipeCard = ({
             )}
         </GridItem>
 
-        <GridItem>
-            <Box
-                display='flex'
-                flexDirection='column'
-                height='100%'
-                pl={{ base: 3, md: 5 }}
-                pr={{ base: 3, md: 6 }}
-            >
-                <Flex justify='space-between' mb={2}>
-                    <Box as='span' bg='#ffff00' px={2} py={0.5} borderRadius='4px'>
-                        <Text fontSize='sm' color='gray.500'>
+        {/* Блок с контентом */}
+        <GridItem py={5} pr={6} pl={{ base: 4, md: 0 }}>
+            <Box height='100%' display='flex' flexDirection='column'>
+                {/* Верхняя строка с категорией и лайками */}
+                <Flex justify='space-between' mb={4}>
+                    <Box bg='yellow.100' px={3} py={1} borderRadius='md' alignSelf='flex-start'>
+                        <Text fontSize='sm' fontWeight='medium'>
                             {category}
                         </Text>
                     </Box>
-                    <Flex align='center' gap={2}>
-                        <Text fontSize='sm'>{likes} ❤️</Text>
-                        <Text fontSize='sm'>{addedToFavorites} ⭐</Text>
+                    <Flex align='center' gap={3}>
+                        <Text fontSize='sm' display='flex' alignItems='center'>
+                            <Box as='span' mr={1}>
+                                ❤️
+                            </Box>{' '}
+                            {likes}
+                        </Text>
+                        <Text fontSize='sm' display='flex' alignItems='center'>
+                            <Box as='span' mr={1}>
+                                ⭐
+                            </Box>{' '}
+                            {addedToFavorites}
+                        </Text>
                     </Flex>
                 </Flex>
 
-                <Box mb={4}>
-                    <Heading size='md' mb={2} fontSize={{ base: 'md', md: 'lg' }}>
+                {/* Основной контент */}
+                <Box mb={6}>
+                    <Heading size='lg' mb={3} lineHeight='tight'>
                         {title}
                     </Heading>
-                    <Text fontSize={{ base: 'sm', md: 'md' }}>{description}</Text>
+                    <Text fontSize='md' color='gray.600'>
+                        {description}
+                    </Text>
                 </Box>
 
+                {/* Кнопки внизу */}
                 <Flex
-                    gap={3}
+                    gap={4}
                     mt='auto'
                     justifyContent='flex-end'
-                    flexDirection={{ base: 'column', md: 'row' }}
+                    flexDirection={{ base: 'column', sm: 'row' }}
                 >
-                    <Button colorScheme='blue' size={{ base: 'sm', md: 'md' }}>
+                    <Button colorScheme='blue' size='md' width={{ base: '100%', sm: 'auto' }}>
                         Готовить
                     </Button>
-                    <Button variant='outline' size={{ base: 'sm', md: 'md' }}>
+                    <Button variant='outline' size='md' width={{ base: '100%', sm: 'auto' }}>
                         Сохранить
                     </Button>
                 </Flex>
