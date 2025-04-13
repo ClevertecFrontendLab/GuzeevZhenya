@@ -1,71 +1,128 @@
-import { Avatar, Box, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, Flex, Heading, Icon, SimpleGrid, Text } from '@chakra-ui/react';
+
+import { BreakpointsConfig, useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
+import { userReviews } from '~/data/data';
+
+import ArrowRight from '../../../assets/BsArrowRight.svg';
+
+const RightArrow = () => <img src={ArrowRight} width='16' height='16' alt='Home' />;
+
+export const reviewsBreakpoints: BreakpointsConfig = {
+    small: {
+        cardWidth: '100%',
+        imageHeight: 160,
+        gap: 3,
+        visibleCards: 1,
+        maxWidth: '100%',
+        containerPadding: 4,
+    },
+    medium: {
+        cardWidth: '227px',
+        imageHeight: 160,
+        gap: 0,
+        visibleCards: 3,
+        maxWidth: '724px',
+        containerPadding: 12, // Added 12px padding for medium
+    },
+    large: {
+        cardWidth: '267px',
+        imageHeight: 160,
+        gap: 4,
+        visibleCards: 3,
+        maxWidth: '880px',
+        containerPadding: 24,
+    },
+    xlarge: {
+        cardWidth: '427px',
+        imageHeight: 184,
+        gap: 4,
+        visibleCards: 3,
+        maxWidth: '1360px',
+        containerPadding: 24,
+    },
+};
 
 export const ReviewsSection = () => {
-    // Данные отзывов
-    const reviews = [
-        {
-            id: 1,
-            avatar: 'https://bit.ly/dan-abramov',
-            name: 'Анна К.',
-            email: 'anna@example.com',
-            text: 'Очень вкусные и понятные рецепты! Всегда получается с первого раза.',
-        },
-        {
-            id: 2,
-            avatar: 'https://bit.ly/kent-c-dodds',
-            name: 'Сергей М.',
-            email: 'sergey@example.com',
-            text: 'Люблю готовить по вашим рецептам. Особенно нравятся десерты!',
-        },
-        {
-            id: 3,
-            avatar: 'https://bit.ly/ryan-florence',
-            name: 'Ольга В.',
-            email: 'olga@example.com',
-            text: 'Спасибо за интересные сочетания ингредиентов. Никогда не думала, что можно так вкусно приготовить из простых продуктов.',
-        },
-    ];
+    const { currentBreakpoint, windowSize, isSmall, isMedium } =
+        useCustomBreakpoints(reviewsBreakpoints);
+    const isLargeScreen = windowSize >= 1024;
+
+    // Get font size based on breakpoint
+    const getTitleSize = () => {
+        if (isSmall || isMedium) return '24px'; // 24px for small and medium
+        return '36px'; // Default size
+    };
 
     return (
         <Box
-            maxW='1920px'
+            maxW={currentBreakpoint.maxWidth}
             mx='auto'
-            p={6} // 24px со всех сторон
-            bg='green.300' // Лаймовый фон
+            px={{
+                base: `${isSmall ? 12 : currentBreakpoint.containerPadding}px`, // 12px for small
+                md: `${isMedium ? 12 : currentBreakpoint.containerPadding}px`, // 12px for medium
+            }}
+            py={8}
+            bg='green.300'
             borderRadius='lg'
+            position='relative'
+            mb={8}
         >
-            {/* Заголовок слева */}
-            <Heading
-                as='h2'
-                size='xl'
-                mb={8}
-                textAlign='left'
-                fontFamily='var(--font-family)'
-                fontWeight={500}
-                fontSize='32px'
-                lineHeight='125%'
-                color='#000'
+            <Flex
+                justify='space-between'
+                align='center'
+                mb={3}
+                px={isSmall || isMedium ? 0 : undefined}
             >
-                Кулинарные рецепты
-            </Heading>
+                <Heading
+                    as='h2'
+                    size='xl'
+                    textAlign='left'
+                    fontFamily='var(--font-family)'
+                    fontWeight={500}
+                    fontSize={getTitleSize()} // Dynamic font size
+                    lineHeight='125%'
+                    color='#000'
+                >
+                    Кулинарные блоги
+                </Heading>
 
-            {/* Карточки отзывов */}
-            <SimpleGrid columns={[1, 2, 3]} spacing={6}>
-                {reviews.map((review) => (
+                {isLargeScreen && (
+                    <Flex justify='center' mb={12}>
+                        <Button bg='#B1FF2E' variant='ghost' colorScheme='blue'>
+                            Все авторы
+                            <Icon
+                                as={RightArrow}
+                                marginLeft='8px'
+                                position='relative'
+                                top='10px' // Сдвигаем иконку вниз на 10px
+                            />
+                        </Button>
+                    </Flex>
+                )}
+            </Flex>
+
+            <SimpleGrid
+                columns={{
+                    base: 1,
+                    md: currentBreakpoint.visibleCards,
+                }}
+                spacing={currentBreakpoint.gap}
+                mb={4}
+                justifyItems='center'
+            >
+                {userReviews.slice(0, 3).map((review) => (
                     <Box
                         key={review.id}
-                        p={6}
+                        p={isSmall || isMedium ? 3 : 4} // 12px padding (3 * 4px) for small/medium
                         borderWidth='1px'
                         borderRadius='lg'
-                        maxW='426px'
-                        minH='184px'
+                        width={currentBreakpoint.cardWidth}
+                        minH={currentBreakpoint.cardWidth === '427px' ? '184px' : '160px'}
                         display='flex'
                         flexDirection='column'
-                        bg='white' // Белый фон карточки
+                        bg='white'
                     >
                         <Flex align='center' mb={4} height='48px'>
-                            {' '}
-                            {/* Фиксированная высота для аватара и текста */}
                             <Avatar name={review.name} src={review.avatar} mr={4} size='md' />
                             <Box>
                                 <Text
@@ -73,6 +130,7 @@ export const ReviewsSection = () => {
                                     fontSize='18px'
                                     lineHeight='156%'
                                     color='#000'
+                                    noOfLines={1}
                                 >
                                     {review.name}
                                 </Text>
@@ -82,25 +140,40 @@ export const ReviewsSection = () => {
                                     fontSize='14px'
                                     lineHeight='143%'
                                     color='rgba(0, 0, 0, 0.64)'
+                                    noOfLines={1}
                                 >
                                     {review.email}
                                 </Text>
                             </Box>
                         </Flex>
                         <Text
-                            mt={3}
+                            pt={3}
                             fontFamily='var(--font-family)'
                             fontWeight={400}
                             fontSize='14px'
                             lineHeight='143%'
                             color='#000'
                             flex={1}
+                            noOfLines={4}
                         >
                             {review.text}
                         </Text>
                     </Box>
                 ))}
             </SimpleGrid>
+
+            {!isLargeScreen && (
+                <Flex justify='center' mb={12}>
+                    <Button bg='#B1FF2E' variant='ghost' colorScheme='blue'>
+                        Все авторы
+                        <Icon
+                            as={RightArrow}
+                            marginLeft='8px'
+                            marginTop='10px' // Добавляем отступ сверху 10px
+                        />
+                    </Button>
+                </Flex>
+            )}
         </Box>
     );
 };

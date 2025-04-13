@@ -1,5 +1,8 @@
 import { Avatar, Box, Button, Flex, Grid, GridItem, Heading, Image, Text } from '@chakra-ui/react';
 
+import { newRecipesBreakpoints } from '~/components/constant/breakpoints';
+import { useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
+
 interface JuicyRecipeCardProps {
     image: string;
     title: string;
@@ -12,11 +15,6 @@ interface JuicyRecipeCardProps {
         name: string;
         text: string;
     };
-    cardWidth?: string | number;
-    imageHeight?:
-        | string
-        | number
-        | { base: string | number; md?: string | number; lg?: string | number };
 }
 
 export const JuicyRecipeCard = ({
@@ -27,105 +25,221 @@ export const JuicyRecipeCard = ({
     likes = 0,
     addedToFavorites = 0,
     review,
-    cardWidth = '100%',
-    imageHeight = '244px',
-}: JuicyRecipeCardProps) => (
-    <Grid
-        templateColumns={{ base: '1fr', md: '346px 1fr' }}
-        gap={{ base: 0, md: 6 }}
-        width={cardWidth}
-        bg='white'
-        borderRadius='lg'
-        overflow='hidden'
-        boxShadow='md'
-    >
-        {/* Блок с изображением */}
-        <GridItem position='relative'>
-            <Image
-                src={image}
-                alt={title}
-                width='100%'
-                height={imageHeight}
-                objectFit='cover'
-                display='block'
-            />
+}: JuicyRecipeCardProps) => {
+    const { isSmall, isMedium } = useCustomBreakpoints(newRecipesBreakpoints);
 
-            {review && (
-                <Box
-                    position='absolute'
-                    bottom='20px'
-                    left='24px'
-                    maxW='250px'
-                    bg='green.300'
-                    p={2}
-                    borderRadius='md'
-                >
-                    <Flex align='center'>
-                        <Avatar src={review.avatar} name={review.name} size='xs' mr={2} />
+    // Styles for different breakpoints
+    const getStyles = () => {
+        if (isSmall) {
+            return {
+                cardWidth: '100%',
+                maxWidth: '328px',
+                imageWidth: '158px',
+                cardHeight: '128px',
+                gap: '12px',
+                padding: '8px',
+                titleFontSize: '14px',
+                descriptionFontSize: '12px',
+                categoryFontSize: '10px',
+                buttonHeight: '24px',
+                buttonWidth: '80px',
+                showDescription: false,
+                gridTemplate: '158px 1fr',
+                showCategory: false,
+                reviewStyles: {
+                    position: 'absolute',
+                    bottom: '8px',
+                    left: '8px',
+                    bg: 'rgba(255, 255, 255, 0.9)',
+                    p: '4px',
+                    borderRadius: 'md',
+                    maxWidth: '90%',
+                    avatarSize: 'xs',
+                    textSize: '10px',
+                    nameSize: '10px',
+                },
+            };
+        }
+        if (isMedium) {
+            return {
+                cardWidth: '356px',
+                imageWidth: '158px',
+                cardHeight: '128px',
+                gap: '12px',
+                padding: '8px',
+                titleFontSize: '14px',
+                categoryFontSize: '10px',
+                buttonHeight: '24px',
+                buttonWidth: '80px',
+                showDescription: false,
+                gridTemplate: '158px 1fr',
+                showCategory: false,
+                reviewStyles: {
+                    position: 'absolute',
+                    bottom: '12px',
+                    left: '12px',
+                    bg: 'rgba(255, 255, 255, 0.9)',
+                    p: '6px',
+                    borderRadius: 'md',
+                    maxWidth: '85%',
+                    avatarSize: 'sm',
+                    textSize: '12px',
+                    nameSize: '12px',
+                },
+            };
+        }
+        // Default (large screens)
+        return {
+            cardWidth: '100%',
+            imageWidth: '346px',
+            cardHeight: '244px',
+            gap: '24px',
+            padding: '24px 24px 24px 0',
+            titleFontSize: '20px',
+            descriptionFontSize: '14px',
+            categoryFontSize: '14px',
+            buttonHeight: '32px',
+            buttonWidth: '122px',
+            showDescription: true,
+            gridTemplate: '346px 1fr',
+            showCategory: true,
+            reviewStyles: {
+                position: 'absolute',
+                bottom: '20px',
+                left: '24px',
+                bg: 'rgba(255, 255, 255, 0.9)',
+                p: '8px',
+                borderRadius: 'md',
+                maxWidth: '80%',
+                avatarSize: 'md',
+                textSize: '14px',
+                nameSize: '14px',
+            },
+        };
+    };
+
+    const styles = getStyles();
+
+    return (
+        <Grid
+            templateColumns={styles.gridTemplate}
+            gap={styles.gap}
+            width={styles.cardWidth}
+            maxWidth={isSmall ? styles.maxWidth : undefined}
+            height={styles.cardHeight}
+            bg='white'
+            borderRadius='lg'
+            overflow='hidden'
+            boxShadow='md'
+        >
+            {/* Image block with review */}
+            <GridItem position='relative' width={styles.imageWidth} height={styles.cardHeight}>
+                <Image
+                    src={image}
+                    alt={title}
+                    width='100%'
+                    height='100%'
+                    objectFit='cover'
+                    display='block'
+                />
+
+                {/* Review overlay */}
+                {review && !isSmall && !isMedium && (
+                    <Flex align='center' {...styles.reviewStyles}>
+                        <Avatar
+                            size={styles.reviewStyles?.avatarSize}
+                            src={review.avatar}
+                            name={review.name}
+                            mr={2}
+                        />
                         <Box>
-                            <Text as='span' fontSize='sm' fontWeight='medium' mr={2}>
-                                {review.name}:
+                            <Text
+                                fontSize={styles.reviewStyles?.nameSize}
+                                fontWeight='500'
+                                mb='2px'
+                            >
+                                {review.name}
                             </Text>
-                            <Text as='span' fontSize='sm'>
+                            <Text fontSize={styles.reviewStyles?.textSize} noOfLines={1}>
                                 {review.text}
                             </Text>
                         </Box>
                     </Flex>
-                </Box>
-            )}
-        </GridItem>
+                )}
+            </GridItem>
 
-        {/* Блок с контентом */}
-        <GridItem py={5} pr={6} pl={{ base: 4, md: 0 }}>
-            <Box height='100%' display='flex' flexDirection='column'>
-                {/* Верхняя строка с категорией и лайками */}
-                <Flex justify='space-between' mb={4}>
-                    <Box bg='yellow.100' px={3} py={1} borderRadius='md' alignSelf='flex-start'>
-                        <Text fontSize='sm' fontWeight='medium'>
-                            {category}
-                        </Text>
-                    </Box>
-                    <Flex align='center' gap={3}>
-                        <Text fontSize='sm' display='flex' alignItems='center'>
-                            <Box as='span' mr={1}>
-                                ❤️
-                            </Box>{' '}
-                            {likes}
-                        </Text>
-                        <Text fontSize='sm' display='flex' alignItems='center'>
-                            <Box as='span' mr={1}>
-                                ⭐
-                            </Box>{' '}
-                            {addedToFavorites}
-                        </Text>
+            {/* Content block */}
+            <GridItem p={styles.padding} overflow='hidden'>
+                <Box height='100%' display='flex' flexDirection='column'>
+                    {/* 1. Категория и лайки (на одном уровне) */}
+                    <Flex justify='space-between' align='center' mb={isSmall || isMedium ? 2 : 4}>
+                        {/* Категория (только на больших экранах) */}
+                        {styles.showCategory && (
+                            <Box bg='yellow.100' px={4} py={0.5} borderRadius='md'>
+                                <Text fontSize={styles.categoryFontSize} fontWeight='400'>
+                                    {category}
+                                </Text>
+                            </Box>
+                        )}
+
+                        {/* Лайки (всегда) */}
+                        <Flex align='center' gap={3}>
+                            <Text fontSize={styles.categoryFontSize}>❤️ {likes}</Text>
+                            <Text fontSize={styles.categoryFontSize}>⭐ {addedToFavorites}</Text>
+                        </Flex>
                     </Flex>
-                </Flex>
 
-                {/* Основной контент */}
-                <Box mb={6}>
-                    <Heading size='lg' mb={3} lineHeight='tight'>
+                    {/* 2. Заголовок */}
+                    <Heading
+                        fontSize={styles.titleFontSize}
+                        fontWeight={500}
+                        mb={isSmall || isMedium ? 2 : 4}
+                        lineHeight='tight'
+                        noOfLines={isSmall || isMedium ? 1 : 2}
+                    >
                         {title}
                     </Heading>
-                    <Text fontSize='md' color='gray.600'>
-                        {description}
-                    </Text>
-                </Box>
 
-                {/* Кнопки внизу */}
-                <Flex
-                    gap={4}
-                    mt='auto'
-                    justifyContent='flex-end'
-                    flexDirection={{ base: 'column', sm: 'row' }}
-                >
-                    <Button colorScheme='blue' size='md' width={{ base: '100%', sm: 'auto' }}>
-                        Готовить
-                    </Button>
-                    <Button variant='outline' size='md' width={{ base: '100%', sm: 'auto' }}>
-                        Сохранить
-                    </Button>
-                </Flex>
-            </Box>
-        </GridItem>
-    </Grid>
-);
+                    {/* 3. Описание (только на больших экранах) */}
+                    {styles.showDescription && (
+                        <Text
+                            fontSize={styles.descriptionFontSize}
+                            fontWeight={400}
+                            color='gray.600'
+                            mb={4}
+                            noOfLines={2}
+                        >
+                            {description}
+                        </Text>
+                    )}
+
+                    {/* 4. Кнопки */}
+                    <Flex
+                        gap={{ base: '4px', md: '8px' }}
+                        justifyContent={{ base: 'space-between', md: 'flex-end' }}
+                        mt='auto'
+                    >
+                        <Button
+                            variant='outline'
+                            size={isSmall || isMedium ? 'xs' : 'sm'}
+                            height={styles.buttonHeight}
+                            width={isSmall || isMedium ? '24px' : '122px'}
+                            p={isSmall || isMedium ? 0 : undefined}
+                        >
+                            {isSmall || isMedium ? '❤️' : '❤️ Сохранить'}
+                        </Button>
+                        <Button
+                            bg='black'
+                            color='white'
+                            size={isSmall || isMedium ? 'xs' : 'sm'}
+                            height={styles.buttonHeight}
+                            width={styles.buttonWidth}
+                        >
+                            Готовить
+                        </Button>
+                    </Flex>
+                </Box>
+            </GridItem>
+        </Grid>
+    );
+};
