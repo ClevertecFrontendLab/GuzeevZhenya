@@ -22,7 +22,7 @@ export const reviewsBreakpoints: BreakpointsConfig = {
         gap: 0,
         visibleCards: 3,
         maxWidth: '724px',
-        containerPadding: 12, // Added 12px padding for medium
+        containerPadding: 12,
     },
     large: {
         cardWidth: '267px',
@@ -47,10 +47,9 @@ export const ReviewsSection = () => {
         useCustomBreakpoints(reviewsBreakpoints);
     const isLargeScreen = windowSize >= 1024;
 
-    // Get font size based on breakpoint
     const getTitleSize = () => {
-        if (isSmall || isMedium) return '24px'; // 24px for small and medium
-        return '36px'; // Default size
+        if (isSmall || isMedium) return '24px';
+        return '36px';
     };
 
     return (
@@ -58,8 +57,8 @@ export const ReviewsSection = () => {
             maxW={currentBreakpoint.maxWidth}
             mx='auto'
             px={{
-                base: `${isSmall ? 12 : currentBreakpoint.containerPadding}px`, // 12px for small
-                md: `${isMedium ? 12 : currentBreakpoint.containerPadding}px`, // 12px for medium
+                base: `${isSmall ? 12 : currentBreakpoint.containerPadding}px`,
+                md: `${isMedium ? 12 : currentBreakpoint.containerPadding}px`,
             }}
             py={8}
             bg='green.300'
@@ -79,7 +78,7 @@ export const ReviewsSection = () => {
                     textAlign='left'
                     fontFamily='var(--font-family)'
                     fontWeight={500}
-                    fontSize={getTitleSize()} // Dynamic font size
+                    fontSize={getTitleSize()}
                     lineHeight='125%'
                     color='#000'
                 >
@@ -90,12 +89,7 @@ export const ReviewsSection = () => {
                     <Flex justify='center' mb={12}>
                         <Button bg='#B1FF2E' variant='ghost' colorScheme='blue'>
                             Все авторы
-                            <Icon
-                                as={RightArrow}
-                                marginLeft='8px'
-                                position='relative'
-                                top='10px' // Сдвигаем иконку вниз на 10px
-                            />
+                            <Icon as={RightArrow} marginLeft='8px' position='relative' top='10px' />
                         </Button>
                     </Flex>
                 )}
@@ -113,7 +107,7 @@ export const ReviewsSection = () => {
                 {userReviews.slice(0, 3).map((review) => (
                     <Box
                         key={review.id}
-                        p={isSmall || isMedium ? 3 : 4} // 12px padding (3 * 4px) for small/medium
+                        p={isSmall || isMedium ? 3 : 4}
                         borderWidth='1px'
                         borderRadius='lg'
                         width={currentBreakpoint.cardWidth}
@@ -166,11 +160,7 @@ export const ReviewsSection = () => {
                 <Flex justify='center' mb={12}>
                     <Button bg='#B1FF2E' variant='ghost' colorScheme='blue'>
                         Все авторы
-                        <Icon
-                            as={RightArrow}
-                            marginLeft='8px'
-                            marginTop='10px' // Добавляем отступ сверху 10px
-                        />
+                        <Icon as={RightArrow} marginLeft='8px' marginTop='10px' />
                     </Button>
                 </Flex>
             )}

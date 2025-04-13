@@ -2,13 +2,19 @@ import { useEffect, useState } from 'react';
 
 export interface BreakpointValues {
     cardWidth: number | string;
-    imageHeight: number;
+    imageHeight?: number;
     visibleCards?: number;
     gap?: number;
     visible?: boolean;
     width?: number | string;
     maxWidth?: number | string;
     containerPadding?: number | string;
+    cardHeight?: number | string;
+    containerWidth?: number | string;
+    smallCardHeight?: number | string;
+    cardPadding?: number | string;
+    smallCardPadding?: number | string;
+    height?: number | string;
 }
 
 export interface BreakpointsConfig {

@@ -10,14 +10,14 @@ interface MobileMenuProps {
 export const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => (
     <Box
         position='fixed'
-        top='80px' // Высота хедера
+        top='80px'
         left={0}
         right={0}
-        zIndex='modal' // Выше чем dropdown
-        bg='rgba(0, 0, 0, 0.4)' // Полупрозрачный оверлей
-        height='calc(100vh - 80px)' // Оставшееся пространство
+        zIndex='modal'
+        bg='rgba(0, 0, 0, 0.4)'
+        height='calc(100vh - 80px)'
         display={isOpen ? 'block' : 'none'}
-        onClick={onClose} // Закрытие при клике вне меню
+        onClick={onClose}
     >
         <Collapse in={isOpen} animateOpacity>
             <Box bg='white' p={4} shadow='xl' maxHeight='calc(100vh - 80px)' overflowY='auto'>
