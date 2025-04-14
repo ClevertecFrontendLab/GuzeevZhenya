@@ -1,74 +1,11 @@
-// NewRecipes.tsx
 import { Box, Flex, Heading, IconButton } from '@chakra-ui/react';
 import { useRef } from 'react';
 
+import { newRecipesBreakpoints } from '~/components/constant/breakpoints';
 import { useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
 import { newRecipes } from '~/data/data';
 
 import { RecipeCard } from './RecipeCard';
-
-const newRecipesBreakpoints = {
-    xsmall: {
-        cardWidth: 140,
-        imageHeight: 100,
-        visibleCards: 2,
-        gap: 12,
-        fontSize: {
-            // Добавляем размеры шрифта для xsmall
-            heading: '20px',
-            cardTitle: '14px',
-            cardText: '12px',
-        },
-    },
-    small: {
-        cardWidth: 158,
-        imageHeight: 128,
-        visibleCards: 2,
-        gap: 12,
-        fontSize: {
-            // Размеры шрифта для small
-            heading: '22px',
-            cardTitle: '15px',
-            cardText: '13px',
-        },
-    },
-    medium: {
-        cardWidth: 240,
-        imageHeight: 160,
-        visibleCards: 4,
-        gap: 16,
-        fontSize: {
-            // Размеры шрифта для medium
-            heading: '24px',
-            cardTitle: '16px',
-            cardText: '14px',
-        },
-    },
-    large: {
-        cardWidth: 280,
-        imageHeight: 180,
-        visibleCards: 4,
-        gap: 20,
-        fontSize: {
-            // Размеры шрифта для large
-            heading: '26px',
-            cardTitle: '18px',
-            cardText: '15px',
-        },
-    },
-    xlarge: {
-        cardWidth: 324,
-        imageHeight: 230,
-        visibleCards: 4,
-        gap: 24,
-        fontSize: {
-            // Размеры шрифта для xlarge
-            heading: '48px',
-            cardTitle: '20px',
-            cardText: '16px',
-        },
-    },
-};
 
 export const NewRecipes = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -114,13 +51,7 @@ export const NewRecipes = () => {
 
     return (
         <Box mb={10} maxW={containerWidth} pt={6} pb={5} px={isXSmall ? 4 : 0}>
-            {/* Only xsmall gets padding */}
-            <Heading
-                size='md'
-                mb={6}
-                fontSize={fontSize.heading} // Применяем размер шрифта для заголовка
-                lineHeight='1.2'
-            >
+            <Heading size='md' mb={6} fontSize={fontSize.heading} lineHeight='1.2'>
                 Новые рецепты
             </Heading>
             <Box position='relative'>
@@ -150,8 +81,6 @@ export const NewRecipes = () => {
                     }}
                 >
                     <Flex gap={`${gap}px`} px={0}>
-                        {' '}
-                        {/* Removed padding for all sizes */}
                         {newRecipes.map((recipe) => (
                             <Box key={recipe.id} flex={`0 0 ${cardWidth}px`} flexShrink={0}>
                                 <RecipeCard

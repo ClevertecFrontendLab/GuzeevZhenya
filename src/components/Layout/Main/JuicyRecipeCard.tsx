@@ -28,7 +28,6 @@ export const JuicyRecipeCard = ({
 }: JuicyRecipeCardProps) => {
     const { isSmall, isMedium } = useCustomBreakpoints(newRecipesBreakpoints);
 
-    // Styles for different breakpoints
     const getStyles = () => {
         if (isSmall) {
             return {
@@ -88,7 +87,6 @@ export const JuicyRecipeCard = ({
                 },
             };
         }
-        // Default (large screens)
         return {
             cardWidth: '100%',
             imageWidth: '346px',
@@ -132,7 +130,6 @@ export const JuicyRecipeCard = ({
             overflow='hidden'
             boxShadow='md'
         >
-            {/* Image block with review */}
             <GridItem position='relative' width={styles.imageWidth} height={styles.cardHeight}>
                 <Image
                     src={image}
@@ -143,7 +140,6 @@ export const JuicyRecipeCard = ({
                     display='block'
                 />
 
-                {/* Review overlay */}
                 {review && !isSmall && !isMedium && (
                     <Flex align='center' {...styles.reviewStyles}>
                         <Avatar
@@ -168,12 +164,9 @@ export const JuicyRecipeCard = ({
                 )}
             </GridItem>
 
-            {/* Content block */}
             <GridItem p={styles.padding} overflow='hidden'>
                 <Box height='100%' display='flex' flexDirection='column'>
-                    {/* 1. Категория и лайки (на одном уровне) */}
                     <Flex justify='space-between' align='center' mb={isSmall || isMedium ? 2 : 4}>
-                        {/* Категория (только на больших экранах) */}
                         {styles.showCategory && (
                             <Box bg='yellow.100' px={4} py={0.5} borderRadius='md'>
                                 <Text fontSize={styles.categoryFontSize} fontWeight='400'>
@@ -182,14 +175,12 @@ export const JuicyRecipeCard = ({
                             </Box>
                         )}
 
-                        {/* Лайки (всегда) */}
                         <Flex align='center' gap={3}>
                             <Text fontSize={styles.categoryFontSize}>❤️ {likes}</Text>
                             <Text fontSize={styles.categoryFontSize}>⭐ {addedToFavorites}</Text>
                         </Flex>
                     </Flex>
 
-                    {/* 2. Заголовок */}
                     <Heading
                         fontSize={styles.titleFontSize}
                         fontWeight={500}
@@ -200,7 +191,6 @@ export const JuicyRecipeCard = ({
                         {title}
                     </Heading>
 
-                    {/* 3. Описание (только на больших экранах) */}
                     {styles.showDescription && (
                         <Text
                             fontSize={styles.descriptionFontSize}
@@ -213,7 +203,6 @@ export const JuicyRecipeCard = ({
                         </Text>
                     )}
 
-                    {/* 4. Кнопки */}
                     <Flex
                         gap={{ base: '4px', md: '8px' }}
                         justifyContent={{ base: 'space-between', md: 'flex-end' }}

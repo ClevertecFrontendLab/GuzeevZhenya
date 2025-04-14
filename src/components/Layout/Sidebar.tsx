@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import { Box, Collapse, Flex, Icon, Image, Text, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
 import { categories } from '~/data/data';
@@ -9,26 +9,10 @@ import { categories } from '~/data/data';
 import { Footer } from './Footer';
 
 export const sidebarBreakpoints = {
-    small: {
-        // 0-767px
-        width: '0',
-        visible: false,
-    },
-    medium: {
-        // 768-1023px
-        width: '200px',
-        visible: false,
-    },
-    large: {
-        // 1024-1439px
-        width: '220px',
-        visible: true,
-    },
-    xlarge: {
-        // 1440px+
-        width: '256px',
-        visible: true,
-    },
+    small: { width: '0', visible: false },
+    medium: { width: '200px', visible: false },
+    large: { width: '220px', visible: true },
+    xlarge: { width: '256px', visible: true },
 };
 
 export const Sidebar = () => {
@@ -66,6 +50,9 @@ export const Sidebar = () => {
                             onClick={() => toggleCategory(category.id)}
                             p={2}
                             _hover={{ bg: 'gray.100' }}
+                            data-test-id={
+                                category.name === 'Веганская кухня' ? 'vegan-cuisine' : undefined
+                            }
                         >
                             <Flex alignItems='center'>
                                 <Image
@@ -103,6 +90,11 @@ export const Sidebar = () => {
                                             width: '100%',
                                             padding: '4px 0',
                                         }}
+                                        data-test-id={
+                                            category.name === 'Веганская кухня'
+                                                ? 'vegan-cuisine-item'
+                                                : undefined
+                                        }
                                     >
                                         <Text fontSize='14px' _hover={{ color: 'blue.500' }}>
                                             {item.name}

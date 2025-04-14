@@ -1,7 +1,8 @@
 import { Box, Button, Flex, Grid, Heading, Text, useBreakpointValue } from '@chakra-ui/react';
 import { useMemo } from 'react';
 
-import { BreakpointsConfig, useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
+import { recipeCardsBreakpoints } from '~/components/constant/breakpoints';
+import { useCustomBreakpoints } from '~/components/hooks/useCustomBreakpoints';
 import { categories, newRecipes } from '~/data/data';
 
 interface RecipeCardProps {
@@ -19,45 +20,6 @@ interface RecipeCardProps {
 interface RecipeCardsListProps {
     categoryId?: number; // Опциональный ID категории
 }
-
-export const recipeCardsBreakpoints: BreakpointsConfig = {
-    small: {
-        cardWidth: '100%',
-        cardHeight: 'auto',
-        containerWidth: '100%',
-        smallCardHeight: '44px',
-        gap: 4,
-        cardPadding: 3,
-        smallCardPadding: 2,
-    },
-    medium: {
-        cardWidth: '232px',
-        cardHeight: '168px',
-        containerWidth: '240px',
-        smallCardHeight: '48px',
-        gap: 4,
-        cardPadding: 3,
-        smallCardPadding: 3,
-    },
-    large: {
-        cardWidth: '282px',
-        cardHeight: '180px',
-        containerWidth: '282px',
-        smallCardHeight: '52px',
-        gap: 4,
-        cardPadding: 4,
-        smallCardPadding: 3,
-    },
-    xlarge: {
-        cardWidth: '322px',
-        cardHeight: '192px',
-        containerWidth: '668px',
-        smallCardHeight: '56px',
-        gap: 6,
-        cardPadding: 6,
-        smallCardPadding: 4,
-    },
-};
 
 export const RecipeCardsList = ({ categoryId }: RecipeCardsListProps) => {
     const { currentBreakpoint } = useCustomBreakpoints(recipeCardsBreakpoints);
@@ -113,20 +75,12 @@ export const RecipeCardsList = ({ categoryId }: RecipeCardsListProps) => {
                 mb={6}
             >
                 {categoryRecipes.slice(0, 2).map((recipe, index) => (
-                    // <RecipeCard
-                    //     key={index}
-                    //     {...recipe}
-                    //     width={cardWidth}
-                    //     height={cardHeight}
-                    //     padding={cardPadding}
-                    //     isMobile={isMobile}
-                    // />
                     <RecipeCard
                         key={index}
                         {...recipe}
-                        width={cardWidth || '100%'} // Добавляем fallback
-                        height={cardHeight || 'auto'} // Добавляем fallback
-                        padding={cardPadding || 4} // Добавляем fallback
+                        width={cardWidth || '100%'}
+                        height={cardHeight || 'auto'}
+                        padding={cardPadding || 4}
                         isMobile={isMobile}
                     />
                 ))}
@@ -137,8 +91,8 @@ export const RecipeCardsList = ({ categoryId }: RecipeCardsListProps) => {
                             key={index}
                             title={recipe.title}
                             width='100%'
-                            height={smallCardHeight || '44px'} // Fallback значение
-                            padding={smallCardPadding || 2} // Fallback значение
+                            height={smallCardHeight || '44px'}
+                            padding={smallCardPadding || 2}
                         />
                     ))}
                 </Flex>
@@ -160,10 +114,9 @@ const RecipeCard = ({
 }: RecipeCardProps & {
     width: string | number;
     height: string | number;
-    padding: number;
+    padding: string | number;
     isMobile?: boolean;
 }) => {
-    // Ограничиваем текст для мобильных устройств
     const truncatedTitle = isMobile
         ? title.length > 30
             ? `${title.slice(0, 20)}...`
@@ -242,7 +195,7 @@ interface SmallRecipeCardProps {
     title: string;
     width: string | number;
     height: string | number;
-    padding: number;
+    padding: string | number;
 }
 
 const SmallRecipeCard = ({ title, width, height, padding }: SmallRecipeCardProps) => (

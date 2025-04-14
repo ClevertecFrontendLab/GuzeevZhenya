@@ -1,5 +1,5 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { newRecipes } from '~/data/data';
 

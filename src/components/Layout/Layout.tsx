@@ -1,5 +1,5 @@
 import { Box, Flex, useDisclosure } from '@chakra-ui/react';
-import { Outlet } from 'react-router';
+import { Outlet } from 'react-router-dom';
 
 import { newRecipesBreakpoints } from '../constant/breakpoints';
 import { useCustomBreakpoints } from '../hooks/useCustomBreakpoints';

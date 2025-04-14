@@ -1,5 +1,5 @@
 import { Box, Flex, Img, Text } from '@chakra-ui/react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import HomeSvg from '../../assets/home.svg';
 import { newRecipesBreakpoints } from '../constant/breakpoints';
@@ -23,7 +23,7 @@ export const MobileBottomNav = () => {
 
     return (
         <Box
-            // position='fixed'
+            data-test-id='footer'
             bottom='0'
             left='0'
             right='0'

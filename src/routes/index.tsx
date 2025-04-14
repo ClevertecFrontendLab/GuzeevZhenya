@@ -1,7 +1,8 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter } from 'react-router-dom';
 
 import { Main } from '~/components/Layout/Main/Main';
 import { CategoryPage } from '~/pages/CategoryPage';
+import { JuiciestPage } from '~/pages/JuiciestPage';
 
 import { Layout } from '../components/Layout/Layout';
 
@@ -11,16 +12,20 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
             {
-                index: true, // Главная страница
+                index: true,
                 element: <Main />,
             },
             {
-                path: '/category/:categoryId', // Страница категории (список подкатегорий)
+                path: '/category/:categoryId',
                 element: <CategoryPage />,
             },
             {
-                path: '/category/:categoryId/:itemName', // Страница подкатегории (список рецептов)
+                path: '/category/:categoryId/:itemName',
                 element: <CategoryPage />,
+            },
+            {
+                path: '/juiciest',
+                element: <JuiciestPage />,
             },
         ],
     },

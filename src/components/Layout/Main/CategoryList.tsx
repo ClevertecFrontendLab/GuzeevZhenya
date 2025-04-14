@@ -7,11 +7,10 @@ export const CategoryList = () => {
     const location = useLocation();
     const [currentCategoryId, currentSubcategory] = location.pathname.split('/').slice(2);
 
-    // Проверяем, что мы находимся на странице категории
     const isCategoryPage = location.pathname.startsWith('/category/');
 
     if (!isCategoryPage) {
-        return null; // Не отображаем компонент на главной странице
+        return null;
     }
 
     return (

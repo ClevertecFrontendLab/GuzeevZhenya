@@ -1,5 +1,15 @@
-import { AddIcon, ChatIcon } from '@chakra-ui/icons';
 import { Box, Center, Flex, Icon, Text } from '@chakra-ui/react';
+
+import AddRecipeIcon from '../../assets/addRecipe.svg';
+import HeartIcon from '../../assets/BsBookmarkHeart.svg';
+import BookMarkIcon from '../../assets/BsEmojiHeartEyes.svg';
+import PeopleIcon from '../../assets/BsPeopleFill.svg';
+
+const BookMark = () => <img src={BookMarkIcon} width='16' height='16' alt='Home' />;
+const Heart = () => <img src={HeartIcon} width='16' height='16' alt='Home' />;
+
+const People = () => <img src={PeopleIcon} width='16' height='16' alt='Home' />;
+const AddRecipe = () => <img src={AddRecipeIcon} width='48' height='12' alt='Home' />;
 
 export const RightSidebar = () => (
     <Box mx={4} display='flex' flexDirection='column' position='relative' height='100vh'>
@@ -16,14 +26,16 @@ export const RightSidebar = () => (
                     justifyContent='center'
                 >
                     <Icon
-                        as={ChatIcon}
+                        as={BookMark}
                         w={5}
                         h={5}
                         color='yellow.500'
                         mr={1}
                         filter='drop-shadow(0 0 2px rgba(255, 255, 0, 0.7))'
                     />
-                    <Text fontSize='sm'>24</Text>
+                    <Text ml={2} fontSize='16px' color='#2DB100'>
+                        24
+                    </Text>
                 </Flex>
 
                 <Flex
@@ -36,14 +48,16 @@ export const RightSidebar = () => (
                     justifyContent='center'
                 >
                     <Icon
-                        as={ChatIcon}
+                        as={Heart}
                         w={4}
                         h={4}
                         color='red.500'
                         mr={1}
                         filter='drop-shadow(0 0 2px rgba(255, 0, 0, 0.7))'
                     />
-                    <Text fontSize='sm'>42</Text>
+                    <Text ml={2} fontSize='16px' color='#2DB100'>
+                        42
+                    </Text>
                 </Flex>
 
                 <Flex
@@ -56,14 +70,16 @@ export const RightSidebar = () => (
                     justifyContent='center'
                 >
                     <Icon
-                        as={ChatIcon}
+                        as={People}
                         w={4}
                         h={4}
                         color='blue.500'
                         mr={1}
                         filter='drop-shadow(0 0 2px rgba(0, 0, 255, 0.7))'
                     />
-                    <Text fontSize='sm'>12</Text>
+                    <Text ml={2} fontSize='16px' color='#2DB100'>
+                        12
+                    </Text>
                 </Flex>
             </Flex>
         </Box>
@@ -80,14 +96,14 @@ export const RightSidebar = () => (
             >
                 <Center flex={1}>
                     <Icon
-                        as={AddIcon}
-                        w={12}
-                        h={12}
+                        as={AddRecipe}
+                        w={6}
+                        h={6}
                         color='green.500'
                         filter='drop-shadow(0 0 4px rgba(0, 255, 0, 0.7)) drop-shadow(0 0 8px rgba(255, 0, 255, 0.5))'
                     />
                 </Center>
-                <Text fontSize='md' fontWeight='medium' mb={4}>
+                <Text fontSize='12px' color='#000000A3' fontWeight='medium' mb={4}>
                     Записать рецепт
                 </Text>
             </Flex>
